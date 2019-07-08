@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">project2</string>
+    <string name="mobile">Mobile</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="or_login_with">Or Login With</string>
+    <string name="password">Password</string>
+    <string name="username">username</string>
+
+</resources>
