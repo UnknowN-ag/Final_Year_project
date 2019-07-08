@@ -41,22 +41,22 @@ public class login_screen extends AppCompatActivity {
 
     private void validate_login(){
         boolean isValid = true;
-        if(mobile_input.getText().toString().isEmpty()){
+        if((mobile_input.getText().toString().isEmpty()) || (!mobile_input.getText().toString().equals("1111"))){
             mobile_input_layout.setError("Please Enter Valid Number");
             isValid = false;
         }else {
             mobile_input_layout.setError("");
         }
 
-        if(password_input.getText().toString().isEmpty()){
-            password_input_layout.setError("Please Enter Valid Number");
+        if((password_input.getText().toString().isEmpty()) || (!password_input.getText().toString().equals("admin")) ){
+            mobile_input_layout.setError("Please Input Valid Password");
             isValid = false;
         }else {
             password_input_layout.setError("");
         }
 
         if(isValid){
-            Toast.makeText(login_screen.this,"succesfull", Toast.LENGTH_SHORT).show();
+            Toast.makeText(login_screen.this,"Login Succesfull", Toast.LENGTH_SHORT).show();
         }
 
     }
