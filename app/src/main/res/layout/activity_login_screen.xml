@@ -36,8 +36,7 @@
             android:shadowRadius="10"
             android:textColor="#FFFFFF"
             android:fontFamily="@font/acme_regular"
-            android:textSize="25sp"
-            android:onClick="change_fragment"/>
+            android:textSize="25sp"/>
         <TextView
             android:id="@+id/signup_link"
             android:layout_width="wrap_content"
@@ -51,8 +50,7 @@
             android:shadowRadius="2"
             android:textColor="#E7E7E7"
             android:fontFamily="@font/acme_regular"
-            android:textSize="25sp"
-            android:onClick="change_fragment"/>
+            android:textSize="25sp"/>
 
     </LinearLayout>
 
@@ -67,13 +65,12 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
-        <fragment
+        <FrameLayout
             android:id="@+id/fragment_place"
-            android:name="com.example.project1.login_frag"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </fragment>
+        </FrameLayout>
 
     </android.support.v7.widget.CardView>
 
