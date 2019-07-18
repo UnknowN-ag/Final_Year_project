@@ -1,9 +1,10 @@
-package com.example.project1;
+package com.abhishek.buynsell;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,9 +78,11 @@ public class login_frag extends Fragment {
             login_password_input_layout.setError("");
         }
 
-//        if(isValid){
-//            Toast.makeText(login_screen.this,"Login Succesfull", Toast.LENGTH_SHORT).show();
-//        }
+        if(isValid){
+            Toast.makeText(getActivity(),"Login Succesfull", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), home_screen.class);
+            startActivity(intent);
+        }
 
     }
 
