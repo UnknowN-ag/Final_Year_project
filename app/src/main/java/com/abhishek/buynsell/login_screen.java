@@ -28,7 +28,7 @@ public class login_screen extends AppCompatActivity {
 
 //      ----------------by default fragment in login screen-----------------
         fragment_layout = (FrameLayout) findViewById(R.id.fragment_place);
-        setFragment(new login_frag());
+        setFragmentInitially(new login_frag());
 //      ----------------by default fragment in login screen close-----------------
 
 //      ----------------fragment change logic-------------------------------
@@ -46,14 +46,14 @@ public class login_screen extends AppCompatActivity {
         });
 //      ----------------fragment change logic close-------------------------------
 
-//      -----------------------to hide actionBar-------------------------
+//      -----------------------to hide actionBar--Z-----------------------
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     } // onCreate method
 //      -----------------------to hide actionBar close-------------------------
 
 
-    private void setFragment(Fragment fragment){
+    private void setFragmentInitially(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(fragment_layout.getId(), fragment);
