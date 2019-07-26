@@ -4,13 +4,15 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:elevation="5dp"
     android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="275dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        android:elevation="8dp"
+        app:cardElevation="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,8 +27,8 @@
 
             <TextView
                 android:id="@+id/recyclerTxt"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="11dp"
                 android:layout_below="@id/recyclerImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,9 +46,19 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/acme_regular"
                 android:letterSpacing=".05"
-                android:paddingLeft="5dp"
+                android:layout_marginLeft="11dp"
                 android:text="Price"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/recyclerImg"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="11dp"
+                android:background="@drawable/image_circle" />
+
 
         </RelativeLayout>
 

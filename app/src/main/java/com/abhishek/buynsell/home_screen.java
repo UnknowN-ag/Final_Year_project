@@ -45,6 +45,8 @@ public class home_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        getSupportActionBar().setTitle("Buy 'n' Sell");
+        getSupportActionBar().setElevation(15);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         mTextMessage = findViewById(R.id.message);
@@ -57,6 +59,8 @@ public class home_screen extends AppCompatActivity {
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        String[] languages = {"Mountain Bike 1", "Mountain Bike 2", "Mountain Bike 3", "Mountain Bike 4", "Mountain Bike 5", "Mountain Bike 6", "Mountain Bike 7", "Mountain Bike 8", "Mountain Bike 9"};
 //        recyclerView.setAdapter(new recyclerViewAdapter(languages));
+
+
     }
 
     private  void setFragmentInitially(Fragment fragment){
