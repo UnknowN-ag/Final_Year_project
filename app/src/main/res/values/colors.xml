@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#B92BFA</color>
+    <color name="colorPrimaryDark">#CD63FB</color>
     <color name="colorAccent">#D81B60</color>
     <color name="appBar">#3AB8FF</color>
     <color name="input_lines">#C443FD</color>
