@@ -15,5 +15,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="dropdown_prompt_price">Price</string>
+
+    <string-array name="dropdown_post_price">
+        <item>Free</item>
+        <item>Paid</item>
+    </string-array>
+
 
 </resources>
