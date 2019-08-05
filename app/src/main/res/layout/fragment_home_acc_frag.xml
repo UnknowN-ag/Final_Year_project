@@ -21,8 +21,10 @@
             android:id="@+id/profile_img"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:scaleType="fitXY"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="130dp"
+            android:src="@drawable/ic_person_cc_24dp"
             android:background="@drawable/image_rectangle"
             android:elevation="8dp" />
 

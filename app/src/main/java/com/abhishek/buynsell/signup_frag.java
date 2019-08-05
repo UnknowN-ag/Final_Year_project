@@ -1,5 +1,6 @@
 package com.abhishek.buynsell;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class signup_frag extends Fragment {
@@ -56,9 +58,11 @@ public class signup_frag extends Fragment {
             signup_password_input_layout.setError("");
         }
 
-//        if(isValid){
-//            Toast.makeText(login_screen.this,"Login Succesfull", Toast.LENGTH_SHORT).show();
-//        }
+        if(isValid){
+            Toast.makeText(getActivity(),"Signup Succesfull", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), registration_afterSignup.class);
+            startActivity(intent);
+        }
 
     }
 
