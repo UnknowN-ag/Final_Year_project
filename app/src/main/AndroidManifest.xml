@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".login_screen"
+            android:name=".home_screen"
             android:screenOrientation="portrait" />
         <activity
             android:name=".registration_afterSignup"
@@ -23,7 +23,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".home_screen"
+            android:name=".login_screen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

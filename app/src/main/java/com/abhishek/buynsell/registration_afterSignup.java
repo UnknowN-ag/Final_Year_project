@@ -77,7 +77,7 @@ public class registration_afterSignup extends AppCompatActivity {
 
 
         if(isValid){
-            Intent intent = new Intent(registration_afterSignup.this , home_screen.class);
+            Intent intent = new Intent(registration_afterSignup.this , login_screen.class);
             startActivity(intent);
         }
     }
