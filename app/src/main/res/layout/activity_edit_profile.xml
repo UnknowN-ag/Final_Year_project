@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".edit_profile">
+
+    <TextView
+        android:id="@+id/brand_name_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cardview_registration"
+        android:layout_marginBottom="60dp"
+        android:gravity="center_horizontal"
+        android:text="Buy 'n' Sell"
+        android:textColor="#ffff"
+        android:textSize="55sp"
+        android:shadowColor="#000000"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="5"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_registration"
+        android:layout_width="match_parent"
+        android:layout_height="525dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-55dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="5dp"
+        android:layout_centerHorizontal="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingTop="20dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="Edit Profile"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22dp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/full_name_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/full_name_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/input_lines"
+                        android:drawableTint="#3AB8FF"
+                        android:foregroundTint="@color/input_lines"
+                        android:hint="Full Name"
+                        android:inputType="text"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dept_name_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dept_name_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Department"
+                        android:inputType="text"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/college_name_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/college_name_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="College"
+                        android:text="B.K.Birla College Of Arts, Science and Commerce"
+                        android:inputType="text"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mobile_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mobile_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Number"
+                        android:text="9123456788"
+                        android:inputType="number"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/register_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/login_btn"
+                    android:fontFamily="@font/acme_regular"
+                    android:shadowColor="#000000"
+                    android:shadowDx="3"
+                    android:shadowDy="4"
+                    android:shadowRadius="5"
+                    android:text="Save"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

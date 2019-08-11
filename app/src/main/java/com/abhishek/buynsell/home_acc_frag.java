@@ -14,6 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,8 +41,22 @@ public class home_acc_frag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        setHasOptionsMenu(true);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.acc_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case  R.id.edit_profile:
+                Intent intent = new Intent(getActivity(),edit_profile.class);
+                startActivity(intent);
+                break;
+        }
+        return false;
     }
 
     @Override
@@ -91,6 +108,8 @@ public class home_acc_frag extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
@@ -128,6 +147,8 @@ public class home_acc_frag extends Fragment {
             }
         }
     }
+
+
 
 
 }
