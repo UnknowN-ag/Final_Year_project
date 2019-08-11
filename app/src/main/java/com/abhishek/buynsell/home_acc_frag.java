@@ -3,6 +3,7 @@ package com.abhishek.buynsell;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,8 +41,22 @@ public class home_acc_frag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        setHasOptionsMenu(true);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.acc_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case  R.id.edit_profile:
+                Intent intent = new Intent(getActivity(),edit_profile.class);
+                startActivity(intent);
+                break;
+        }
+        return false;
     }
 
     @Override
@@ -52,6 +70,13 @@ public class home_acc_frag extends Fragment {
         logout_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Context context = getActivity();
+                SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                getActivity().finish();
+
                 Toast.makeText(getActivity(),"Logout Succesfull", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), login_screen.class);
                 startActivity(intent);
@@ -82,6 +107,8 @@ public class home_acc_frag extends Fragment {
 
             }
         });
+
+
 
         return view;
     }
@@ -120,6 +147,8 @@ public class home_acc_frag extends Fragment {
             }
         }
     }
+
+
 
 
 }

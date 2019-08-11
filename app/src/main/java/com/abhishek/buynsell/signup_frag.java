@@ -1,6 +1,8 @@
 package com.abhishek.buynsell;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -44,7 +46,7 @@ public class signup_frag extends Fragment {
 
     private void validate_signup(){
         boolean isValid = true;
-        if((signup_mobile_input.getText().toString().isEmpty()) || (!signup_mobile_input.getText().toString().equals("1111"))){
+        if((signup_mobile_input.getText().toString().isEmpty()) || signup_mobile_input.getText().toString().length()!=10){
             signup_mobile_input_layout.setError("Please Enter Valid Number");
             isValid = false;
         }else {
@@ -59,11 +61,20 @@ public class signup_frag extends Fragment {
         }
 
         if(isValid){
-            Toast.makeText(getActivity(),"Signup Succesfull", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), registration_afterSignup.class);
-            startActivity(intent);
+            sharedPreference_signUp();
         }
 
+    }
+    private void sharedPreference_signUp(){
+        Context context = getActivity();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("mobile", Integer.parseInt(signup_mobile_input.getText().toString()));
+        editor.apply();
+
+        Toast.makeText(getActivity(),"Signup Succesfull", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), registration_afterSignup.class);
+        startActivity(intent);
     }
 
 

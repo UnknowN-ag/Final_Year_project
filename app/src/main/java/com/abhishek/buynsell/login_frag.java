@@ -1,6 +1,8 @@
 package com.abhishek.buynsell;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -24,7 +26,19 @@ public class login_frag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Context context = getActivity();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
+        int mobile = sharedPreferences.getInt("mobile",0);
+        if(mobile>0){
+            Intent intent = new Intent(getActivity(),home_screen.class);
+            startActivity(intent);
+        }
+
+
         View view = inflater.inflate(R.layout.fragment_login_frag, container, false);
+
+
 
         login_mobile_input_layout = (TextInputLayout) view.findViewById(R.id.login_mobile_input_layout);
         login_mobile_input = (TextInputEditText) view.findViewById(R.id.login_mobile_input);
@@ -85,6 +99,7 @@ public class login_frag extends Fragment {
         }
 
     }
+
 
 
 }
