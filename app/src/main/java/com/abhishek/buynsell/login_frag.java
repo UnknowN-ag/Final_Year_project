@@ -93,11 +93,21 @@ public class login_frag extends Fragment {
         }
 
         if(isValid){
-            Toast.makeText(getActivity(),"Login Succesfull", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), home_screen.class);
-            startActivity(intent);
+            sharedPreference_login();
         }
 
+    }
+    private  void sharedPreference_login(){
+        Context context = getActivity();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data", context.MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("mobile", Integer.parseInt(login_mobile_input.getText().toString()));
+        editor.apply();
+
+        Toast.makeText(getActivity(),"Login Succesfull", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), home_screen.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
 

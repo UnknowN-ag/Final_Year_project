@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:text="Buy 'n' Sell"
+        android:text="@string/project_name"
         android:textColor="#ffff"
         android:textSize="55sp"
         android:shadowColor="#000000"

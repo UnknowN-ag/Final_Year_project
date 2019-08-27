@@ -14,7 +14,7 @@
         android:layout_above="@+id/cardview_registration"
         android:layout_marginBottom="60dp"
         android:gravity="center_horizontal"
-        android:text="Buy 'n' Sell"
+        android:text="@string/project_name"
         android:textColor="#ffff"
         android:textSize="55sp"
         android:shadowColor="#000000"
@@ -25,7 +25,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_registration"
         android:layout_width="match_parent"
-        android:layout_height="525dp"
+        android:layout_height="550dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-55dp"
         app:cardCornerRadius="50dp"
@@ -34,136 +34,170 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="30dp"
-            android:paddingTop="20dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="30dp">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:text="You Are On The Way..."
-                android:textColor="@color/colorPrimary"
-                android:textSize="22dp"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingTop="10dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="30dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/full_name_register_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/full_name_register"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/input_lines"
-                    android:drawableTint="#3AB8FF"
-                    android:foregroundTint="@color/input_lines"
-                    android:hint="Full Name"
-                    android:inputType="text"
-                    android:letterSpacing="0.08"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
                     android:shadowColor="#000000"
                     android:shadowDx="1"
                     android:shadowDy="1"
-                    android:shadowRadius="2" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dept_name_register_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                app:errorEnabled="true">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dept_name_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Department"
-                    android:inputType="text"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:letterSpacing="0.08"
-                    android:shadowColor="#000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/college_name_register_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                app:errorEnabled="true">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/college_name_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="College"
-                    android:text="B.K.Birla College Of Arts, Science and Commerce"
-                    android:inputType="text"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:letterSpacing="0.08"
-                    android:shadowColor="#000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/mobile_register_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                app:errorEnabled="true">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mobile_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Number"
-                    android:text="9123456788"
-                    android:inputType="number"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:letterSpacing="0.08"
-                    android:shadowColor="#000000"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <Button
-                android:id="@+id/register_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/login_btn"
-                android:fontFamily="@font/acme_regular"
-                android:shadowColor="#000000"
-                android:shadowDx="3"
-                android:shadowDy="4"
-                android:shadowRadius="5"
-                android:text="Go..."
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                    android:shadowRadius="2"
+                    android:text="Hello, Abhishek"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22dp" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text="You Are On The Way..."
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/full_name_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/full_name_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/input_lines"
+                        android:drawableTint="#3AB8FF"
+                        android:foregroundTint="@color/input_lines"
+                        android:hint="Full Name"
+                        android:inputType="text"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dept_name_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dept_name_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:hint="Department"
+                        android:inputType="text"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/college_name_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/college_name_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:hint="College"
+                        android:inputType="text"
+                        android:letterSpacing="0.08"
+                        android:shadowColor="#000000"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2"
+                        android:text="B.K.Birla College Of Arts, Science and Commerce" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--<com.google.android.material.textfield.TextInputLayout-->
+                <!--android:id="@+id/mobile_register_layout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:clickable="true"-->
+                <!--android:focusable="true"-->
+                <!--android:focusableInTouchMode="true"-->
+                <!--app:errorEnabled="true">-->
+                <!--<com.google.android.material.textfield.TextInputEditText-->
+                <!--android:id="@+id/mobile_register"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:hint="Number"-->
+                <!--android:text="9123456788"-->
+                <!--android:inputType="number"-->
+                <!--android:backgroundTint="@color/colorPrimary"-->
+                <!--android:letterSpacing="0.08"-->
+                <!--android:shadowColor="#000000"-->
+                <!--android:shadowDx="1"-->
+                <!--android:shadowDy="1"-->
+                <!--android:shadowRadius="2"/>-->
+                <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+                <Spinner
+                    android:id="@+id/dropdown_post_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:entries="@array/dropdown_post_gender"
+                    android:popupBackground="@color/colorPrimary"
+                    android:prompt="@string/dropdown_prompt_gender"
+                    android:spinnerMode="dialog" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="22dp"
+                    android:background="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/register_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/login_btn"
+                    android:fontFamily="@font/acme_regular"
+                    android:shadowColor="#000000"
+                    android:shadowDx="3"
+                    android:shadowDy="4"
+                    android:shadowRadius="5"
+                    android:text="Go..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
         </ScrollView>
 
     </androidx.cardview.widget.CardView>
