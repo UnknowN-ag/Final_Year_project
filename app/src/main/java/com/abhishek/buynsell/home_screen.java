@@ -45,7 +45,7 @@ public class home_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        getSupportActionBar().setTitle("Buy 'n' Sell");
+        getSupportActionBar().setTitle("ShopiFy");
         getSupportActionBar().setElevation(15);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 

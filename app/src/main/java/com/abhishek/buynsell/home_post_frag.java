@@ -15,15 +15,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 
 public class home_post_frag extends Fragment {
 
     ImageView imageView;
+    Spinner dropdown_post_price;
+    TextInputLayout price_input_layout;
+    TextInputEditText price_input;
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -48,6 +55,10 @@ public class home_post_frag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_post_frag, container, false);
 
         imageView = view.findViewById(R.id.post_img);
+        price_input = view.findViewById(R.id.price_input);
+        dropdown_post_price = view.findViewById(R.id.dropdown_post_price);
+
+        price_input_layout = view.findViewById(R.id.price_input_layout);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +82,31 @@ public class home_post_frag extends Fragment {
 
             }
         });
+
+        dropdown_post_price.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(dropdown_post_price.getSelectedItem().equals("Paid")){
+                    price_input_layout.setVisibility(View.VISIBLE);
+                }else{
+                    price_input_layout.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+//        String spinner_value = dropdown_post_price.getSelectedItem().toString();
+//        price_input.setText(spinner_value);
+//        if(spinner_value.equals("Paid")){
+//            price_input_layout.setVisibility(View.GONE);
+//        }else{
+//            price_input_layout.setVisibility(View.VISIBLE);
+//        }
+
         return  view;
     }
 

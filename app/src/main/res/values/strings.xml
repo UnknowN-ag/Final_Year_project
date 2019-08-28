@@ -19,11 +19,11 @@
     <string name="dropdown_prompt_price">Price</string>
 
     <string-array name="dropdown_post_price">
-        <item>Free</item>
-        <item>Paid</item>
+        <item value="free">Free</item>
+        <item value="paid">Paid</item>
     </string-array>
 
-    <string name="dropdown_prompt_gender">Price</string>
+    <string name="dropdown_prompt_gender">Gender</string>
 
     <string-array name="dropdown_post_gender">
         <item>Male</item>
