@@ -4,14 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.fragment.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+import org.json.JSONObject;
+import java.util.HashMap;
 
 
 public class login_frag extends Fragment {
@@ -22,23 +31,21 @@ public class login_frag extends Fragment {
     TextInputEditText login_password_input;
     Button login_btn;
 
+    String url = "http://192.168.1.106:3002/getsigneduser";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Context context = getActivity();
-        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
-        int mobile = sharedPreferences.getInt("mobile",0);
-        if(mobile>0){
-            Intent intent = new Intent(getActivity(),home_screen.class);
-            startActivity(intent);
-        }
-
+//        Context context = getActivity();
+//        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
+//        int mobile = sharedPreferences.getInt("mobile",0);
+//        if(mobile>0){
+//            Intent intent = new Intent(getActivity(),home_screen.class);
+//            startActivity(intent);
+//        }
 
         View view = inflater.inflate(R.layout.fragment_login_frag, container, false);
-
-
 
         login_mobile_input_layout = (TextInputLayout) view.findViewById(R.id.login_mobile_input_layout);
         login_mobile_input = (TextInputEditText) view.findViewById(R.id.login_mobile_input);
@@ -57,35 +64,15 @@ public class login_frag extends Fragment {
         return view;
     }
 
-//    private  void validate_login(){
-//        boolean isValid = true;
-//        if((login_mobile_input.getText().toString().isEmpty()) || (!login_mobile_input.getText().toString().equals("1111"))){
-//            login_mobile_input_layout.setError("Please Enter Valid Number");
-//            isValid = false;
-//        }else {
-//            login_mobile_input_layout.setError("");
-//        }
-//
-//        if((login_password_input.getText().toString().isEmpty()) || (!login_password_input.getText().toString().equals("admin")) ){
-//            login_password_input_layout.setError("Please Enter Valid Password");
-//            isValid = false;
-//        }else {
-//            login_mobile_input_layout.setError("");
-//        }
-//
-//    }
-
-
     private void validate_login(){
         boolean isValid = true;
-        if((login_mobile_input.getText().toString().isEmpty()) || (!login_mobile_input.getText().toString().equals("1111"))){
+        if((login_mobile_input.getText().toString().isEmpty()) || (login_mobile_input.getText().toString().length()!=10)){
             login_mobile_input_layout.setError("Please Enter Valid Number");
             isValid = false;
         }else {
             login_mobile_input_layout.setError("");
         }
-
-        if((login_password_input.getText().toString().isEmpty()) || (!login_password_input.getText().toString().equals("admin")) ){
+        if((login_password_input.getText().toString().isEmpty()) ){
             login_password_input_layout.setError("Please Enter Valid Password");
             isValid = false;
         }else {
@@ -93,21 +80,67 @@ public class login_frag extends Fragment {
         }
 
         if(isValid){
-            sharedPreference_login();
-        }
+            String mobile = login_mobile_input.getText().toString();
+            String password = login_password_input.getText().toString();
 
+            HashMap<String, String> params = new HashMap<>();
+            params.put("mobile", mobile);
+            params.put("password", password);
+            JSONObject jsonObject = new JSONObject(params);
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String string = response.toString();
+                        Log.d("abhishek",string);
+
+                        Integer responseCode = response.getInt("responseCode");
+                        if(responseCode == 200){
+                            Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
+                            String token = response.getString("token");
+                            sharedPreference_login(token,responseCode);
+                        }
+                        else if(responseCode == 300){
+                            Toast.makeText(getActivity(), "not verified", Toast.LENGTH_SHORT).show();
+                            String token = response.getString("token");
+                            sharedPreference_login(token,responseCode);
+                        }
+                        else if(responseCode == 500){
+                            Toast.makeText(getActivity(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("abhishek",error.toString());
+                    Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            requestQueue.add(objectRequest);
+        }
     }
-    private  void sharedPreference_login(){
+    private  void sharedPreference_login(String token, Integer responseCode){
         Context context = getActivity();
-        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data", context.MODE_PRIVATE );
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication", context.MODE_PRIVATE );
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("mobile", Integer.parseInt(login_mobile_input.getText().toString()));
+        editor.putString("token", token);
         editor.apply();
 
-        Toast.makeText(getActivity(),"Login Succesfull", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getActivity(), home_screen.class);
-        startActivity(intent);
-        getActivity().finish();
+        if(responseCode == 200){
+            Intent intent = new Intent(getActivity(), home_screen.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
+        if(responseCode == 300){
+            Intent intent = new Intent(getActivity(), registration_afterSignup.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
 
