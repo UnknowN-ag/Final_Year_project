@@ -17,8 +17,8 @@ import com.google.android.material.textfield.TextInputLayout;
 public class registration_afterSignup extends AppCompatActivity {
 
     Button register_btn;
-    TextInputLayout full_name_register_layout,dept_name_register_layout,college_name_register_layout,mobile_register_layout;
-    TextInputEditText full_name_register,dept_name_register,college_name_register,mobile_register;
+    TextInputLayout full_name_register_layout,dept_name_register_layout,college_name_register_layout;
+    TextInputEditText full_name_register,dept_name_register,college_name_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,14 @@ public class registration_afterSignup extends AppCompatActivity {
         full_name_register_layout = findViewById(R.id.full_name_register_layout);
         dept_name_register_layout = findViewById(R.id.dept_name_register_layout);
         college_name_register_layout = findViewById(R.id.college_name_register_layout);
-        mobile_register_layout = findViewById(R.id.mobile_register_layout);
+//        mobile_register_layout = findViewById(R.id.mobile_register_layout);
 
         full_name_register = findViewById(R.id.full_name_register);
         dept_name_register = findViewById(R.id.dept_name_register);
         college_name_register = findViewById(R.id.college_name_register);
-        mobile_register = findViewById(R.id.mobile_register);
+        college_name_register.setKeyListener(null);
+//        mobile_register = findViewById(R.id.mobile_register);
+
 
         getSupportActionBar().hide();
 
@@ -67,12 +69,12 @@ public class registration_afterSignup extends AppCompatActivity {
         }else {
             college_name_register_layout.setError("");
         }
-        if(mobile_register.getText().toString().isEmpty()){
-            mobile_register_layout.setError("Shouldn't be Empty");
-            isValid = false;
-        }else {
-            mobile_register_layout.setError("");
-        }
+//        if(mobile_register.getText().toString().isEmpty()){
+//            mobile_register_layout.setError("Shouldn't be Empty");
+//            isValid = false;
+//        }else {
+//            mobile_register_layout.setError("");
+//        }
 
 
 
