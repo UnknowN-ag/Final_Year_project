@@ -31,19 +31,12 @@ public class login_frag extends Fragment {
     TextInputEditText login_password_input;
     Button login_btn;
 
-    String url = "http://192.168.1.106:3002/getsigneduser";
+    String URL = "http://192.168.1.106:3002/getsigneduser";
+    private  String USER_URL = "http://192.168.1.106:3002/user";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-//        Context context = getActivity();
-//        SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
-//        int mobile = sharedPreferences.getInt("mobile",0);
-//        if(mobile>0){
-//            Intent intent = new Intent(getActivity(),home_screen.class);
-//            startActivity(intent);
-//        }
 
         View view = inflater.inflate(R.layout.fragment_login_frag, container, false);
 
@@ -89,7 +82,7 @@ public class login_frag extends Fragment {
             JSONObject jsonObject = new JSONObject(params);
 
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
@@ -121,7 +114,7 @@ public class login_frag extends Fragment {
                     Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
                 }
             });
-            requestQueue.add(objectRequest);
+            requestQueue.add(jsonObjectRequest);
         }
     }
     private  void sharedPreference_login(String token, Integer responseCode){

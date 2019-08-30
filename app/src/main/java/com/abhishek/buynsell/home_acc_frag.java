@@ -71,7 +71,7 @@ public class home_acc_frag extends Fragment {
             @Override
             public void onClick(View v) {
                 Context context = getActivity();
-                SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
