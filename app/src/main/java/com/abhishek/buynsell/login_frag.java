@@ -102,6 +102,8 @@ public class login_frag extends Fragment {
                         }
                         else if(responseCode == 500){
                             Toast.makeText(getActivity(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getActivity(), "API not Responding", Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e){
                         e.printStackTrace();
