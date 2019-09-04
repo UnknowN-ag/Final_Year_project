@@ -50,7 +50,7 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Abhishek Gupta"
+                    android:text="Name"
                     android:textColor="#000000"
                     android:textSize="30sp"
                     android:gravity="center_horizontal"/>
@@ -58,14 +58,14 @@
                     android:id="@+id/dept_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="T.Y Bsc. CS"
+                    android:text="Department"
                     android:textSize="20sp"
                     android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/college_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="B.K.Birla College Of Arts, Science and Commerce"
+                    android:text="College Name"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15sp"
                     android:gravity="center_horizontal"/>
@@ -73,7 +73,7 @@
                     android:id="@+id/mobile_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9123456788"
+                    android:text="Mobile"
                     android:textSize="20sp"
                     android:gravity="center_horizontal"/>
 

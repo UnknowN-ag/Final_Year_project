@@ -1,6 +1,7 @@
 package com.abhishek.buynsell;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,13 +23,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Method;
+import java.util.HashMap;
 
 
 public class home_acc_frag extends Fragment {
 
+    private  String USER_URL = "http://192.168.1.106:3002/user";
+
     Button logout_btn;
     ImageView imageView;
+    TextView name,dept_name,college_name,mobile_number;
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -65,13 +85,62 @@ public class home_acc_frag extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_acc_frag, container, false);
 
+        name = view.findViewById(R.id.name);
+        dept_name = view.findViewById(R.id.dept_name);
+        college_name = view.findViewById(R.id.college_name);
+        mobile_number = view.findViewById(R.id.mobile_number);
+
         logout_btn = view.findViewById(R.id.logout_btn);
+
+        Context context = getActivity();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication", Context.MODE_PRIVATE);
+        final String shared_token = sharedPreferences.getString("token", "");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, USER_URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try{
+                    Integer responseCode = response.getInt("responseCode");
+                    if(responseCode == 200){
+                        JSONObject user = response.getJSONObject("user");
+                        Log.d("user", user.toString());
+                        Log.d("user", user.getString("fullname"));
+                        name.setText(user.getString("fullname"));
+                        dept_name.setText(user.getString("department"));
+                        college_name.setText(user.getString("college"));
+                        mobile_number.setText(user.getString("mobile"));
+
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public HashMap<String, String> getHeaders() throws AuthFailureError{
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("token", shared_token);
+                return headers;
+            }
+        };
+
+        requestQueue.add(jsonObjectRequest);
+
+
+
+
 
         logout_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Context context = getActivity();
-                SharedPreferences sharedPreferences = context.getSharedPreferences("login_Data",context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();

@@ -60,7 +60,7 @@
                     android:shadowRadius="2"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/full_name_register_layout"
+                    android:id="@+id/full_name_edit_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -69,7 +69,7 @@
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/full_name_register"
+                        android:id="@+id/full_name_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/input_lines"
@@ -84,7 +84,7 @@
                         android:shadowRadius="2" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dept_name_register_layout"
+                    android:id="@+id/dept_name_edit_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -92,7 +92,7 @@
                     android:focusableInTouchMode="true"
                     app:errorEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/dept_name_register"
+                        android:id="@+id/dept_name_edit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Department"
@@ -105,7 +105,7 @@
                         android:shadowRadius="2"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/college_name_register_layout"
+                    android:id="@+id/college_name_edit_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -113,7 +113,7 @@
                     android:focusableInTouchMode="true"
                     app:errorEnabled="true">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/college_name_register"
+                        android:id="@+id/college_name_edit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="College"
@@ -127,7 +127,7 @@
                         android:shadowRadius="2"/>
                 </com.google.android.material.textfield.TextInputLayout>
                 <!--<com.google.android.material.textfield.TextInputLayout-->
-                    <!--android:id="@+id/mobile_register_layout"-->
+                    <!--android:id="@+id/mobile_edit_layout"-->
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:clickable="true"-->
@@ -135,7 +135,7 @@
                     <!--android:focusableInTouchMode="true"-->
                     <!--app:errorEnabled="true">-->
                     <!--<com.google.android.material.textfield.TextInputEditText-->
-                        <!--android:id="@+id/mobile_register"-->
+                        <!--android:id="@+id/mobile_edit"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="match_parent"-->
                         <!--android:hint="Number"-->
@@ -150,7 +150,7 @@
                 <!--</com.google.android.material.textfield.TextInputLayout>-->
 
                 <Spinner
-                    android:id="@+id/dropdown_post_gender"
+                    android:id="@+id/dropdown_gender"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:prompt="@string/dropdown_prompt_gender"
