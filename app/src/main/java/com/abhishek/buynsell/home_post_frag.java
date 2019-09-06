@@ -3,6 +3,7 @@ package com.abhishek.buynsell;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -17,20 +18,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 
 public class home_post_frag extends Fragment {
 
+    private  String POST_URL = "http://192.168.1.106:3002/post";
+
     ImageView imageView;
     Spinner dropdown_post_price;
-    TextInputLayout price_input_layout;
-    TextInputEditText price_input;
+    TextInputLayout product_name_input_layout,product_desc_input_layout,price_input_layout;
+    TextInputEditText product_name_input,product_desc_input,price_input;
+    Button post_btn;
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -55,10 +72,26 @@ public class home_post_frag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_post_frag, container, false);
 
         imageView = view.findViewById(R.id.post_img);
-        price_input = view.findViewById(R.id.price_input);
+
         dropdown_post_price = view.findViewById(R.id.dropdown_post_price);
 
+
+        product_name_input_layout = view.findViewById(R.id.product_name_input_layout);
+        product_desc_input_layout = view.findViewById(R.id.product_desc_input_layout);
         price_input_layout = view.findViewById(R.id.price_input_layout);
+
+        product_name_input = view.findViewById(R.id.product_name_input);
+        product_desc_input = view.findViewById(R.id.product_desc_input);
+        price_input = view.findViewById(R.id.price_input);
+
+        post_btn  = view.findViewById(R.id.post_btn);
+
+        post_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validate_post();
+            }
+        });
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +175,90 @@ public class home_post_frag extends Fragment {
                imageView.setImageURI(selectedImage);
                break;
          }
+        }
+    }
+
+    private void validate_post(){
+        boolean isValid = true;
+        if((product_name_input.getText().toString().isEmpty())){
+            product_name_input_layout.setError("Product Name Required");
+            isValid = false;
+        }else {
+            product_name_input_layout.setError("");
+        }
+        if((product_desc_input.getText().toString().isEmpty()) ){
+            product_desc_input_layout.setError("Product Description Required");
+            isValid = false;
+        }else {
+            product_desc_input_layout.setError("");
+        }
+        String paymentMethod = dropdown_post_price.getSelectedItem().toString();
+        if(paymentMethod.equals("Paid")){
+            if((price_input.getText().toString().isEmpty()) ){
+                price_input_layout.setError("Shouldn't be Empty");
+                isValid = false;
+            }else {
+                price_input_layout.setError("");
+            }
+        }
+
+        if(isValid){
+
+            final Context context = getActivity();
+            SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
+            final String shared_token = sharedPreferences.getString("token", "");
+
+            String paymentType = "Free";
+            if(paymentMethod.equals("Free")){
+                paymentType = "Free";
+            }else if(paymentMethod.equals("Paid")){
+                paymentType = "Paid";
+            }
+
+            HashMap<String, String> params = new HashMap<>();
+            params.put("nameOfProduct", product_name_input.getText().toString());
+            params.put("description", product_desc_input.getText().toString());
+            params.put("paymentType", paymentType);
+            params.put("price", price_input.getText().toString());
+
+            JSONObject jsonObject = new JSONObject(params);
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, POST_URL, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        Integer responsCode = response.getInt("responseCode");
+                        if(responsCode == 200){
+                            product_name_input.setText("");
+                            product_desc_input.setText("");
+                            price_input.setText("");
+                            Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(), "Some Error While Creating Post", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(getActivity(), response+"post", Toast.LENGTH_LONG).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                }
+            }){
+                @Override
+                public HashMap<String, String> getHeaders() throws AuthFailureError{
+                    HashMap<String,String> headers = new HashMap<>();
+                    headers.put("token", shared_token);
+                    return  headers;
+                }
+            };
+            requestQueue.add(jsonObjectRequest);
+
+
+
         }
     }
 }

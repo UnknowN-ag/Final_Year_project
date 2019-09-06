@@ -27,7 +27,21 @@
                 android:padding="20dp"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="New Post"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="28sp"
+                    android:shadowColor="#000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"/>
+
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/product_name_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -36,7 +50,7 @@
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/full_name_register"
+                        android:id="@+id/product_name_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/input_lines"
@@ -51,6 +65,7 @@
                         android:shadowRadius="2" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/product_desc_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
@@ -59,7 +74,7 @@
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-
+                        android:id="@+id/product_desc_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/input_lines"
@@ -110,7 +125,7 @@
                         android:drawableTint="#3AB8FF"
                         android:foregroundTint="@color/input_lines"
                         android:hint="Price"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:letterSpacing="0.08"
                         android:shadowColor="#000000"
                         android:shadowDx="1"
@@ -118,30 +133,30 @@
                         android:shadowRadius="2" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:visibility="visible"
-                    android:focusableInTouchMode="true"
-                    app:errorEnabled="true">
+                <!--<com.google.android.material.textfield.TextInputLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:clickable="true"-->
+                    <!--android:focusable="true"-->
+                    <!--android:visibility="visible"-->
+                    <!--android:focusableInTouchMode="true"-->
+                    <!--app:errorEnabled="true">-->
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <!--<com.google.android.material.textfield.TextInputEditText-->
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/input_lines"
-                        android:drawableTint="#3AB8FF"
-                        android:foregroundTint="@color/input_lines"
-                        android:hint="Description"
-                        android:inputType="text"
-                        android:letterSpacing="0.08"
-                        android:shadowColor="#000000"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="2" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:backgroundTint="@color/input_lines"-->
+                        <!--android:drawableTint="#3AB8FF"-->
+                        <!--android:foregroundTint="@color/input_lines"-->
+                        <!--android:hint="Description"-->
+                        <!--android:inputType="text"-->
+                        <!--android:letterSpacing="0.08"-->
+                        <!--android:shadowColor="#000000"-->
+                        <!--android:shadowDx="1"-->
+                        <!--android:shadowDy="1"-->
+                        <!--android:shadowRadius="2" />-->
+                <!--</com.google.android.material.textfield.TextInputLayout>-->
 
                 <ImageView
                     android:id="@+id/post_img"
@@ -153,7 +168,7 @@
                     android:elevation="5dp"/>
 
                 <Button
-                    android:id="@+id/logout_btn"
+                    android:id="@+id/post_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/login_btn"
