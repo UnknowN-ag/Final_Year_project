@@ -8,6 +8,7 @@
     android:padding="10dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/post_cardView"
         android:layout_width="match_parent"
         android:layout_height="275dp"
         app:cardCornerRadius="5dp"
@@ -26,7 +27,7 @@
                 android:src="@drawable/bycycle" />
 
             <TextView
-                android:id="@+id/recyclerTxt"
+                android:id="@+id/recyclerTxt_heading"
                 android:layout_marginLeft="11dp"
                 android:layout_marginTop="11dp"
                 android:layout_below="@id/recyclerImg"
@@ -40,14 +41,28 @@
                 android:layout_gravity="center"/>
 
             <TextView
+                android:id="@+id/recyclerTxt_paymentType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/recyclerTxt"
+                android:layout_below="@id/recyclerTxt_heading"
                 android:layout_gravity="center"
                 android:fontFamily="@font/acme_regular"
                 android:letterSpacing=".05"
                 android:layout_marginLeft="11dp"
-                android:text="Price"
+                android:text="Paid"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/recyclerTxt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recyclerTxt_heading"
+                android:layout_gravity="center"
+                android:fontFamily="@font/acme_regular"
+                android:letterSpacing=".05"
+                android:layout_marginLeft="11dp"
+                android:layout_toRightOf="@id/recyclerTxt_paymentType"
+                android:text="200"
                 android:textSize="20sp" />
 
             <ImageView

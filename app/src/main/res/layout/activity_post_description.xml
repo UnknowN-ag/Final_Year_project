@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Post_description"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="5dp"
+        android:elevation="10dp"
+        android:clipToPadding="false">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:scrollbars="none">
+            <RelativeLayout
+                android:id="@+id/productDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/postImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bycycle" />
+                <TextView
+                    android:id="@+id/productName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Name Of Product"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_below="@id/postImg"/>
+                <TextView
+                    android:id="@+id/paymentType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paid"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/productName"/>
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200"
+                    android:textSize="16sp"
+                    android:layout_below="@id/productName"
+                    android:layout_toRightOf="@id/paymentType"/>
+                <View
+                    android:id="@+id/view1"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/postDescHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Description"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_below="@id/view1"
+                    />
+                <TextView
+                    android:id="@+id/postDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layout"
+                    android:textSize="14sp"
+                    android:layout_below="@id/postDescHeading"
+                    />
+                <View
+                    android:id="@+id/view2"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/postDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/postUserHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="User Profile"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_below="@id/view2"
+                    />
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Abhishek Gupta"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_below="@id/postUserHeading"/>
+                <TextView
+                    android:id="@+id/userDept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="T.Y.Bsc Computer Science"
+                    android:textSize="14sp"
+                    android:layout_below="@id/userName"/>
+                <TextView
+                    android:id="@+id/mobileNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8830073205"
+                    android:textSize="14sp"
+                    android:layout_below="@id/userDept"/>
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/postUserHeading"
+                    android:layout_alignEnd="@id/userDept"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/image_circle" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@id/mobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/developer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Developer Info."
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#000"
+                    android:textSize="22sp"
+                    android:layout_below="@id/view3"
+                    />
+                <TextView
+                    android:id="@+id/developerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Abhishek Gupta"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_below="@id/developer"/>
+                <TextView
+                    android:id="@+id/developerDept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="T.Y.Bsc Computer Science"
+                    android:textSize="14sp"
+                    android:layout_below="@id/developerName"/>
+                <TextView
+                    android:id="@+id/developerNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8830073205"
+                    android:textSize="14sp"
+                    android:layout_below="@id/developerDept"/>
+
+                <TextView
+                    android:id="@+id/appDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/developerNumber"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layout"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="For any kind of information regarding the Shopify Application, contact the developer."
+                    android:textSize="14sp"
+                    android:layout_below="@id/appDesc"/>
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>
