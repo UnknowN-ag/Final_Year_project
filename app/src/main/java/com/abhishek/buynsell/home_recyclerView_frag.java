@@ -74,6 +74,7 @@ public class home_recyclerView_frag extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        progressDialog.setCancelable(false);
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, ALL_POSTS_URL, null, new Response.Listener<JSONObject>() {
