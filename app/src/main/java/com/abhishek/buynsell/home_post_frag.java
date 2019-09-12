@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +39,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 
 
@@ -50,13 +57,12 @@ public class home_post_frag extends Fragment {
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
+    private Bitmap bitmap;
 
 
     public home_post_frag() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +79,6 @@ public class home_post_frag extends Fragment {
         imageView = view.findViewById(R.id.post_img);
 
         dropdown_post_price = view.findViewById(R.id.dropdown_post_price);
-
 
         product_name_input_layout = view.findViewById(R.id.product_name_input_layout);
         product_desc_input_layout = view.findViewById(R.id.product_desc_input_layout);
@@ -171,10 +176,30 @@ public class home_post_frag extends Fragment {
                case IMAGE_PICK_CODE:
         //data.getData returns the content URI for the selected Image
                Uri selectedImage = data.getData();
-               imageView.setImageURI(selectedImage);
+                               Log.d("selectedImagePATH",selectedImage.toString());
+                   try {
+                       bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                       Log.d("bitmap",bitmap.toString());
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+                Log.d("bitmap",bitmap.toString());
+               imageView.setImageBitmap(bitmap);
+               Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
                break;
          }
         }
+    }
+
+    private  String imageToString(Bitmap bitmap){
+        ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayInputStream);
+        byte[] imgBytes = byteArrayInputStream.toByteArray();
+        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
+    }
+
+    private  void uploadImage(){
+
     }
 
     private void validate_post(){
