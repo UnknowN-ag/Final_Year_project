@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -240,7 +239,6 @@ public class home_post_frag extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(getActivity(), response+"post", Toast.LENGTH_LONG).show();
                 }
             }, new Response.ErrorListener() {
                 @Override

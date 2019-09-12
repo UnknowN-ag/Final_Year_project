@@ -14,7 +14,7 @@
         android:layout_marginBottom="60dp"
         android:text="@string/project_name"
         android:textColor="#ffff"
-        android:textSize="55sp"
+        android:textSize="60sp"
         android:shadowColor="#000000"
         android:shadowDx="3"
         android:shadowDy="3"

@@ -69,7 +69,7 @@ public class signup_frag extends Fragment {
             signup_mobile_input_layout.setError("");
         }
 
-        if((signup_password_input.getText().toString().isEmpty()) || (!signup_password_input.getText().toString().equals("admin")) ){
+        if((signup_password_input.getText().toString().isEmpty())){
             signup_password_input_layout.setError("Please Enter Valid Password");
             isValid = false;
         }else {
@@ -77,11 +77,9 @@ public class signup_frag extends Fragment {
         }
 
         if(isValid){
-//            sharedPreference_signUp();
             HashMap<String, String> params = new HashMap<>();
             params.put("mobile", signup_mobile_input.getText().toString());
             params.put("password", signup_password_input.getText().toString());
-            Log.d("params", params.toString());
             JSONObject jsonObject = new JSONObject(params);
             RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, SIGNUP_URL, jsonObject, new Response.Listener<JSONObject>() {

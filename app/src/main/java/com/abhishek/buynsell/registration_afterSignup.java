@@ -57,13 +57,11 @@ public class registration_afterSignup extends AppCompatActivity {
         full_name_register_layout = findViewById(R.id.full_name_register_layout);
         dept_name_register_layout = findViewById(R.id.dept_name_register_layout);
         college_name_register_layout = findViewById(R.id.college_name_register_layout);
-//        mobile_register_layout = findViewById(R.id.mobile_register_layout);
 
         full_name_register = findViewById(R.id.full_name_register);
         dept_name_register = findViewById(R.id.dept_name_register);
         college_name_register = findViewById(R.id.college_name_register);
         college_name_register.setKeyListener(null);
-//        mobile_register = findViewById(R.id.mobile_register);
 
         dropdown_gender = findViewById(R.id.dropdown_gender);
         logout = findViewById(R.id.logout);
@@ -137,14 +135,11 @@ public class registration_afterSignup extends AppCompatActivity {
             params.put("gender", gender_value.toString());
 
             JSONObject jsonObject = new JSONObject(params);
-            Log.d("params", params.toString());
 
             RequestQueue requestQueue = Volley.newRequestQueue(registration_afterSignup.this);
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, REGISTRATION_URL, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    String string = response.toString();
-                    Log.d("abhishek",string);
                     try {
                         Integer responseCode = response.getInt("responseCode");
                         if(responseCode == 200){

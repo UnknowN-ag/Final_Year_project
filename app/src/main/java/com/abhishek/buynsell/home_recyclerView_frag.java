@@ -59,9 +59,6 @@ public class home_recyclerView_frag extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        String[] languages = {"Mountain Bike 1", "Mountain Bike 2", "Mountain Bike 3", "Mountain Bike 4", "Mountain Bike 5", "Mountain Bike 6", "Mountain Bike 7", "Mountain Bike 8", "Mountain Bike 9"};
-
-//        recyclerView.setAdapter(new recyclerViewAdapter(languages));
 
         viewAllPosts();
 
@@ -82,16 +79,11 @@ public class home_recyclerView_frag extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     Integer responseCode = response.getInt("responseCode");
-                    Log.d("response", responseCode.toString());
-
                     if(responseCode == 200){
                         progressDialog.dismiss();
                         JSONArray jsonArray = response.getJSONArray("post");
-                        Log.d("jsonArray", jsonArray.toString());
                         for(int i = 0; i<jsonArray.length(); i++){
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            Log.d("response", jsonObject.toString());
-                            Log.d("nameOfProduct", jsonObject.getString("nameOfProduct"));
 
                             String nameOfProduct = jsonObject.getString("nameOfProduct");
                             String paymentType = jsonObject.getString("paymentType");

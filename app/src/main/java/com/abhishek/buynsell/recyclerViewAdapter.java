@@ -34,7 +34,11 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewAdapte
     public void onBindViewHolder(recyclerViewHolder holder, int i) {
         holder.recyclerTxt_heading.setText(post.get(i).getNameOfProduct());
         holder.recyclerTxt_paymentType.setText(post.get(i).getPaymentType());
+        if(post.get(i).getPaymentType().equals("Free")){
+            holder.recyclerTxt_price.setVisibility(View.INVISIBLE);
+        }
         holder.recyclerTxt_price.setText(post.get(i).getPrice());
+
         final String productId =post.get(i).getProductId();
 
         holder.post_cardView.setOnClickListener(new View.OnClickListener() {
