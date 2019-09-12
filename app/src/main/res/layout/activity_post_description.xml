@@ -193,21 +193,8 @@
                     android:text="For any kind of information regarding the Shopify Application, contact the developer."
                     android:textSize="14sp"
                     android:layout_below="@id/appDesc"/>
-
-
-
-
-
-
             </RelativeLayout>
-
-
-
-
         </ScrollView>
 
     </androidx.cardview.widget.CardView>
-
-
-
 </LinearLayout>

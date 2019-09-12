@@ -1,15 +1,12 @@
 package com.abhishek.buynsell;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,10 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 
 public class SplashScreen extends AppCompatActivity {
@@ -46,9 +41,6 @@ public class SplashScreen extends AppCompatActivity {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
                 final String token = sharedPreferences.getString("token", "");
 
-//                HashMap<String, String> params = new HashMap<>();
-//                params.put("token", token);
-//                JSONObject jsonObject = new JSONObject(params);
                 RequestQueue requestQueue = Volley.newRequestQueue(SplashScreen.this);
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, USER_URL, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -92,9 +84,6 @@ public class SplashScreen extends AppCompatActivity {
                 };
 
                 requestQueue.add(jsonObjectRequest);
-//                Intent intent = new Intent(SplashScreen.this, login_screen.class);
-//                                startActivity(intent);
-//                                finish();
             }
 
         },SPLASH_TIME_OUT );

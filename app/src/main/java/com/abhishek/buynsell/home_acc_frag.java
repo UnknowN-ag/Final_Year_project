@@ -1,7 +1,6 @@
 package com.abhishek.buynsell;
 
 import android.Manifest;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,11 +32,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Method;
 import java.util.HashMap;
 
 
@@ -104,8 +99,6 @@ public class home_acc_frag extends Fragment {
                     Integer responseCode = response.getInt("responseCode");
                     if(responseCode == 200){
                         JSONObject user = response.getJSONObject("user");
-                        Log.d("user", user.toString());
-                        Log.d("user", user.getString("fullname"));
                         name.setText(user.getString("fullname"));
                         dept_name.setText(user.getString("department"));
                         college_name.setText(user.getString("college"));
@@ -131,10 +124,6 @@ public class home_acc_frag extends Fragment {
         };
 
         requestQueue.add(jsonObjectRequest);
-
-
-
-
 
         logout_btn.setOnClickListener(new View.OnClickListener(){
             @Override

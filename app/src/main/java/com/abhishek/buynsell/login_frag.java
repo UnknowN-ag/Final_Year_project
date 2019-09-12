@@ -86,9 +86,6 @@ public class login_frag extends Fragment {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        String string = response.toString();
-                        Log.d("abhishek",string);
-
                         Integer responseCode = response.getInt("responseCode");
                         if(responseCode == 200){
                             Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT).show();
@@ -112,7 +109,6 @@ public class login_frag extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("abhishek",error.toString());
                     Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
                 }
             });

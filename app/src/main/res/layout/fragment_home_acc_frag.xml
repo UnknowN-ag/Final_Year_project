@@ -98,21 +98,6 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!--<androidx.cardview.widget.CardView-->
-            <!--android:id="@+id/profile_img_cardview"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="150dp"-->
-            <!--android:layout_marginRight="200dp"-->
-            <!--android:layout_alignTop="@id/profile_cardview"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginTop="-78dp"-->
-            <!--android:elevation="15dp"-->
-            <!--app:cardElevation="5dp"-->
-            <!--app:cardBackgroundColor="#E9E8E8"-->
-            <!--app:cardCornerRadius="10dp">-->
-
-        <!--</androidx.cardview.widget.CardView>-->
     </RelativeLayout>
 
 </FrameLayout>

@@ -46,14 +46,12 @@ public class edit_profile extends AppCompatActivity {
         full_name_edit_layout = findViewById(R.id.full_name_edit_layout);
         dept_name_edit_layout = findViewById(R.id.dept_name_edit_layout);
         college_name_edit_layout = findViewById(R.id.college_name_edit_layout);
-//        mobile_edit_layout = findViewById(R.id.mobile_edit_layout);
 
         dropdown_gender = findViewById(R.id.dropdown_gender);
         full_name_edit = findViewById(R.id.full_name_edit);
         dept_name_edit = findViewById(R.id.dept_name_edit);
         college_name_edit = findViewById(R.id.college_name_edit);
         college_name_edit.setKeyListener(null);
-//        mobile_edit = findViewById(R.id.mobile_edit);
 
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,15 +82,6 @@ public class edit_profile extends AppCompatActivity {
         }else {
             college_name_edit_layout.setError("");
         }
-//        if(mobile_edit.getText().toString().isEmpty()){
-//            mobile_edit_layout.setError("Shouldn't be Empty");
-//            isValid = false;
-//        }else {
-//            mobile_edit_layout.setError("");
-//        }
-
-
-
         if(isValid){
 
             Context context = edit_profile.this;

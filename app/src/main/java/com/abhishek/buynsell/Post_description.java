@@ -3,7 +3,6 @@ package com.abhishek.buynsell;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,13 +13,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
-import java.util.Map;
 
 public class Post_description extends AppCompatActivity {
 
@@ -48,7 +43,6 @@ public class Post_description extends AppCompatActivity {
         HashMap<String,String> params = new HashMap<>();
         params.put("productId", productId);
         JSONObject jsonObject = new JSONObject(params);
-        Log.d("jsonObject", jsonObject.toString());
 
         RequestQueue requestQueue = Volley.newRequestQueue(Post_description.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, PROD_URL, jsonObject, new Response.Listener<JSONObject>() {
