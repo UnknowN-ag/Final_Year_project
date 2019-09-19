@@ -28,7 +28,9 @@ import java.util.HashMap;
 
 public class edit_profile extends AppCompatActivity {
 
-    private  String EDIT_PROFILE_URL = "http://192.168.1.106:3002/edituser";
+//    private  String EDIT_PROFILE_URL = "http://192.168.1.106:3002/edituser";
+//    private  String EDIT_PROFILE_URL = "http://dry-thicket-34134.herokuapp.com/edituser";
+    private String EDIT_PROFILE_URL = home_screen.urlPrefix+"edituser";
 
     Button save_btn;
     TextInputLayout full_name_edit_layout,dept_name_edit_layout,college_name_edit_layout;

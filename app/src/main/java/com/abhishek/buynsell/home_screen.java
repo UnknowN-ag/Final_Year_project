@@ -19,6 +19,9 @@ public class home_screen extends AppCompatActivity {
     FrameLayout frameLayout;
     private TextView mTextMessage;
 
+    protected  static  String urlPrefix = "http://192.168.1.106:3002/";
+//    protected  static  String urlPrefix = "http://dry-thicket-34134.herokuapp.com/";
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

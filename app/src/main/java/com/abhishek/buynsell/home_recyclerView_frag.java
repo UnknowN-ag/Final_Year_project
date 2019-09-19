@@ -31,8 +31,9 @@ import java.util.List;
 
 public class home_recyclerView_frag extends Fragment {
 
-    private  String ALL_POSTS_URL = "http://192.168.1.106:3002/viewallpost";
-
+//    private  String ALL_POSTS_URL = "http://192.168.1.106:3002/viewallpost";
+//    private  String ALL_POSTS_URL = "http://dry-thicket-34134.herokuapp.com/viewallpost";
+    private String ALL_POSTS_URL = home_screen.urlPrefix+"viewallpost";
     RecyclerView recyclerView;
     List<LauncherActivity.ListItem> listItems;
 

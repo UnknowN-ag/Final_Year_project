@@ -31,9 +31,9 @@ public class login_frag extends Fragment {
     TextInputEditText login_password_input;
     Button login_btn;
 
-    String URL = "http://192.168.1.106:3002/getsigneduser";
-    private  String USER_URL = "http://192.168.1.106:3002/user";
-
+//    String URL = "http://192.168.1.106:3002/getsigneduser";
+//    private  String URL = "http://dry-thicket-34134.herokuapp.com/getsigneduser";
+    private String URL = home_screen.urlPrefix+"getsigneduser";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

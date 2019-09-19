@@ -36,8 +36,9 @@ public class signup_frag extends Fragment {
     TextInputEditText signup_password_input;
     Button signup_btn;
 
-    private  String SIGNUP_URL = "http://192.168.1.106:3002/signup";
-
+//    private  String SIGNUP_URL = "http://192.168.1.106:3002/signup";
+//    private  String SIGNUP_URL = "http://dry-thicket-34134.herokuapp.com/signup";
+    private String SIGNUP_URL = home_screen.urlPrefix+"signup";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
