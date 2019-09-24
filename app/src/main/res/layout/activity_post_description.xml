@@ -126,6 +126,7 @@
                     android:textSize="14sp"
                     android:layout_below="@id/userDept"/>
                 <ImageView
+                    android:id="@+id/userPic"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="5dp"

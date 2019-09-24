@@ -2,6 +2,7 @@ package com.abhishek.buynsell;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,17 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewAdapter.recyclerViewHolder> {
+    String postImageStr,profilePicStr = "";
 
     Context context;
     private List<Post> post;
+    private ImageView postImage, profileImg;
+
     public recyclerViewAdapter(Context context,List<Post> post){
         this.context = context;
         this.post = post;
@@ -38,8 +44,9 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewAdapte
             holder.recyclerTxt_price.setVisibility(View.INVISIBLE);
         }
         holder.recyclerTxt_price.setText(post.get(i).getPrice());
-
-        final String productId =post.get(i).getProductId();
+        postImageStr = post.get(i).getPostImage();
+        profilePicStr = post.get(i).getProfilePic();
+        final String productId = post.get(i).getProductId();
 
         holder.post_cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +56,16 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewAdapte
                 context.startActivity(intent);
             }
         });
-
-
+        Picasso.get()
+                .load(postImageStr)
+                .resize(800, 800)
+                .centerCrop()
+                .into(postImage);
+        Picasso.get()
+                .load(profilePicStr)
+                .resize(200, 200)
+                .centerCrop()
+                .into(profileImg);
     }
 
     @Override
@@ -59,16 +74,18 @@ public class recyclerViewAdapter extends RecyclerView.Adapter<recyclerViewAdapte
     }
 
     public class recyclerViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgIcon;
+
         TextView recyclerTxt_heading,recyclerTxt_paymentType,recyclerTxt_price;
         CardView post_cardView;
         public recyclerViewHolder(View itemView){
             super(itemView);
-            imgIcon = itemView.findViewById(R.id.recyclerImg);
+            postImage = itemView.findViewById(R.id.recyclerImg);
             recyclerTxt_heading = itemView.findViewById(R.id.recyclerTxt_heading);
             recyclerTxt_paymentType = itemView.findViewById(R.id.recyclerTxt_paymentType);
             recyclerTxt_price = itemView.findViewById(R.id.recyclerTxt_price);
             post_cardView = itemView.findViewById(R.id.post_cardView);
+            profileImg = itemView.findViewById((R.id.profileImg));
+
         }
     }
 }
