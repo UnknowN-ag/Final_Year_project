@@ -1,16 +1,20 @@
 package com.abhishek.buynsell;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -49,6 +53,7 @@ public class home_post_frag extends Fragment {
 
 //    private  String POST_URL = "http://192.168.1.106:3002/post";
 //    private  String POST_URL = "http://dry-thicket-34134.herokuapp.com/post";
+
     private String POST_URL = home_screen.urlPrefix+"post";
     ImageView imageView;
     Spinner dropdown_post_price;
@@ -56,9 +61,12 @@ public class home_post_frag extends Fragment {
     TextInputEditText product_name_input,product_desc_input,price_input;
     Button post_btn;
 
+
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
     private Bitmap bitmap;
+    Uri selectedImage;
+    String base64str;
 
 
     public home_post_frag() {
@@ -152,6 +160,10 @@ public class home_post_frag extends Fragment {
         //intent to pic img
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 0);
+        intent.putExtra("aspectY", 0);
+        intent.putExtra("return-data", true);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_PICK_CODE);
     }
 
@@ -176,8 +188,8 @@ public class home_post_frag extends Fragment {
              switch (requestCode){
                case IMAGE_PICK_CODE:
         //data.getData returns the content URI for the selected Image
-               Uri selectedImage = data.getData();
-                               Log.d("selectedImagePATH",selectedImage.toString());
+               selectedImage = data.getData();
+               Log.d("selectedImagePATH",selectedImage.toString());
                    try {
                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
                        Log.d("bitmap",bitmap.toString());
@@ -186,17 +198,17 @@ public class home_post_frag extends Fragment {
                    }
                 Log.d("bitmap",bitmap.toString());
                imageView.setImageBitmap(bitmap);
-               Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
+               base64str = imageToString(bitmap);
                break;
          }
         }
     }
 
     private  String imageToString(Bitmap bitmap){
-        ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayInputStream);
-        byte[] imgBytes = byteArrayInputStream.toByteArray();
-        return Base64.encodeToString(imgBytes, Base64.DEFAULT);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+        byte[] imgBytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(imgBytes, Base64.NO_WRAP);
     }
 
     private  void uploadImage(){
@@ -217,6 +229,7 @@ public class home_post_frag extends Fragment {
         }else {
             product_desc_input_layout.setError("");
         }
+
         String paymentMethod = dropdown_post_price.getSelectedItem().toString();
         if(paymentMethod.equals("Paid")){
             if((price_input.getText().toString().isEmpty()) ){
@@ -226,9 +239,23 @@ public class home_post_frag extends Fragment {
                 price_input_layout.setError("");
             }
         }
+        if(bitmap==null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Image Field Should Not Be Empty");
+//            builder.setMessage("Image Field Should Not Be Empty");
+            builder.setPositiveButton("ok",new DialogInterface.OnClickListener(){
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            isValid = false;
+        }
 
         if(isValid){
-
             final Context context = getActivity();
             SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
             final String shared_token = sharedPreferences.getString("token", "");
@@ -240,11 +267,20 @@ public class home_post_frag extends Fragment {
                 paymentType = "Paid";
             }
 
+
+            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
+            progressDialog.setCancelable(false);
+
             HashMap<String, String> params = new HashMap<>();
             params.put("nameOfProduct", product_name_input.getText().toString());
             params.put("description", product_desc_input.getText().toString());
             params.put("paymentType", paymentType);
             params.put("price", price_input.getText().toString());
+            params.put("file",base64str);
+//            Log.d("bytes", base64str);
+        //    Log.d("params", params.toString());
 
             JSONObject jsonObject = new JSONObject(params);
 
@@ -253,11 +289,15 @@ public class home_post_frag extends Fragment {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
+//
                         Integer responsCode = response.getInt("responseCode");
                         if(responsCode == 200){
+                            progressDialog.dismiss();
                             product_name_input.setText("");
                             product_desc_input.setText("");
                             price_input.setText("");
+                            bitmap = null;
+                            imageView.setImageDrawable(null);
                             Toast.makeText(getActivity(), "Post Created", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "Some Error While Creating Post", Toast.LENGTH_SHORT).show();
@@ -283,6 +323,58 @@ public class home_post_frag extends Fragment {
 
 
 
+
+
+
+
+
+
+
+
+
         }
     }
 }
+
+
+//    HashMap<String, Uri> params = new HashMap<>();
+    //                        String image = imageToString(bitmap);
+//                        params.put("file",selectedImage);
+//                        Log.d("selectedImage", selectedImage.toString());
+//
+//                        JSONObject jsonObject = new JSONObject(params);
+//    RequestQueue requestQueue2 = Volley.newRequestQueue(getActivity());
+//    JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.POST, POST_UPLOAD_URL, null, new Response.Listener<JSONObject>() {
+//        @Override
+//        public void onResponse(JSONObject response) {
+//            try {
+//                Integer responsCode = response.getInt("responseCode");
+//                if(responsCode == 200){
+//                    Toast.makeText(getActivity(), "Post Uploaded", Toast.LENGTH_SHORT).show();
+//                }else if(responsCode == 700){
+//                    Toast.makeText(getActivity(), "Select Image", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    Toast.makeText(getActivity(), "multer err", Toast.LENGTH_SHORT).show();
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }, new Response.ErrorListener() {
+//        @Override
+//        public void onErrorResponse(VolleyError error) {
+//            Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+//        }
+//    })
+//    {
+//        @Override
+//        public HashMap<String, String> getParams() throws AuthFailureError{
+//            HashMap<String,String> param = new HashMap<>();
+//            String image = imageToString(bitmap);
+//            param.put("file", image);
+//            Log.d("selectedImage", image);
+//            return  param;
+//        }
+//    };
+//                        requestQueue2.add(jsonObjectRequest2);

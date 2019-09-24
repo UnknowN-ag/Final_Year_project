@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,8 +91,13 @@ public class home_recyclerView_frag extends Fragment {
                             String paymentType = jsonObject.getString("paymentType");
                             String price = jsonObject.getString("price");
                             String productId = jsonObject.getString("_id");
+                            String postImage = jsonObject.getString("postImage");
 
-                            Post.add(new Post(nameOfProduct, paymentType, price, productId));
+                            JSONArray userJsonArray = jsonObject.getJSONArray("user");
+                            JSONObject user = userJsonArray.getJSONObject(0);
+                            String  profilePic = user.getString("profilePic");
+
+                            Post.add(new Post(nameOfProduct, paymentType, price, productId, postImage, profilePic));
 
 
                         }

@@ -16,17 +16,25 @@
             android:background="@drawable/gradient"
             android:orientation="vertical">
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/profile_img"
+        <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:scaleType="fitXY"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="130dp"
-            android:src="@drawable/ic_person_cc_24dp"
-            android:background="@drawable/image_rectangle"
-            android:elevation="8dp" />
+            android:elevation="5dp"
+            android:translationZ="5dp"
+            app:cardCornerRadius="5dp">
+            <ImageView
+                android:id="@+id/profile_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_person_cc_24dp"
+                android:background="@drawable/image_rectangle"
+                 />
+        </androidx.cardview.widget.CardView>
+
 
 
         <androidx.cardview.widget.CardView
@@ -42,7 +50,7 @@
             android:layout_centerHorizontal="true">
 
             <LinearLayout
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -61,14 +69,15 @@
                     android:text="Department"
                     android:textSize="20sp"
                     android:gravity="center_horizontal"/>
+
                 <TextView
                     android:id="@+id/college_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="College Name"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="15sp"
-                    android:gravity="center_horizontal"/>
+                    android:textSize="15sp" />
                 <TextView
                     android:id="@+id/mobile_number"
                     android:layout_width="match_parent"
