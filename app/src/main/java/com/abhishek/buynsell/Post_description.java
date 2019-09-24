@@ -19,8 +19,9 @@ import java.util.HashMap;
 
 public class Post_description extends AppCompatActivity {
 
-    private String PROD_URL = "http://192.168.1.106:3002/viewpostbyid";
-
+//    private String PROD_URL = "http://192.168.1.106:3002/viewpostbyid";
+//    private  String PROD_URL = "http://dry-thicket-34134.herokuapp.com/viewpostbyid";
+    private String PROD_URL = home_screen.urlPrefix+"viewpostbyid";
     TextView productName,paymentType,price,postDescription,userName,userDept,mobileNumber;
 
     @Override

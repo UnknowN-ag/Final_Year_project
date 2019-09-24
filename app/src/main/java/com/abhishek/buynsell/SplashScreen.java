@@ -21,7 +21,8 @@ import java.util.HashMap;
 public class SplashScreen extends AppCompatActivity {
 
     private  static int SPLASH_TIME_OUT = 1000;
-    private  String USER_URL = "http://192.168.1.106:3002/user";
+//    private  String USER_URL = "http://dry-thicket-34134.herokuapp.com/user";
+    private String USER_URL = home_screen.urlPrefix+"user";
 
 
 

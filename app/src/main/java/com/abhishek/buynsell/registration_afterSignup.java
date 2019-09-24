@@ -36,8 +36,9 @@ import java.util.HashMap;
 
 public class registration_afterSignup extends AppCompatActivity {
 
-    private  String REGISTRATION_URL = "http://192.168.1.106:3002/registeruser";
-
+//    private  String REGISTRATION_URL = "http://192.168.1.106:3002/registeruser";
+//    private  String REGISTRATION_URL = "http://dry-thicket-34134.herokuapp.com/registeruser";
+    private String REGISTRATION_URL = home_screen.urlPrefix+"registeruser";
     Button register_btn;
     TextInputLayout full_name_register_layout,dept_name_register_layout,college_name_register_layout;
     TextInputEditText full_name_register,dept_name_register,college_name_register;

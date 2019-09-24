@@ -47,8 +47,9 @@ import java.util.HashMap;
 
 public class home_post_frag extends Fragment {
 
-    private  String POST_URL = "http://192.168.1.106:3002/post";
-
+//    private  String POST_URL = "http://192.168.1.106:3002/post";
+//    private  String POST_URL = "http://dry-thicket-34134.herokuapp.com/post";
+    private String POST_URL = home_screen.urlPrefix+"post";
     ImageView imageView;
     Spinner dropdown_post_price;
     TextInputLayout product_name_input_layout,product_desc_input_layout,price_input_layout;

@@ -38,8 +38,9 @@ import java.util.HashMap;
 
 public class home_acc_frag extends Fragment {
 
-    private  String USER_URL = "http://192.168.1.106:3002/user";
-
+//    private  String USER_URL = "http://192.168.1.106:3002/user";
+//    private  String USER_URL = "http://dry-thicket-34134.herokuapp.com/user";
+    private String USER_URL = home_screen.urlPrefix+"user";
     Button logout_btn;
     ImageView imageView;
     TextView name,dept_name,college_name,mobile_number;
