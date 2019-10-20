@@ -44,7 +44,7 @@ public class Post_description extends AppCompatActivity {
         postImg = findViewById(R.id.postImg);
         userPic = findViewById(R.id.userPic);
 
-        getSupportActionBar().setTitle("ShopiFy");
+        getSupportActionBar().setTitle("SelloFy");
         getSupportActionBar().setElevation(15);
         String productId = getIntent().getStringExtra("productId");
 

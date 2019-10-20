@@ -10,24 +10,24 @@
 
     <application
         android:allowBackup="true"
-        android:label="ShopiFy"
-        android:icon="@mipmap/ic_launcher"
+        android:label="Sellofy"
+        android:icon="@mipmap/sellofy_icon_round"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Post_description"></activity>
-        <activity android:name=".edit_profile" />
+        <activity android:name="com.abhishek.buynsell.Post_description"></activity>
+        <activity android:name="com.abhishek.buynsell.edit_profile" />
         <activity
-            android:name=".home_screen"
+            android:name="com.abhishek.buynsell.home_screen"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".registration_afterSignup"
+            android:name="com.abhishek.buynsell.registration_afterSignup"
             android:label="Registration"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.abhishek.buynsell.MainActivity" />
         <activity
-            android:name=".login_screen"
+            android:name="com.abhishek.buynsell.login_screen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashScreen"
+            android:name="com.abhishek.buynsell.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
