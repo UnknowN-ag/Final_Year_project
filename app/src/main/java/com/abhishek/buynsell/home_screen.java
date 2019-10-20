@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -19,8 +18,8 @@ public class home_screen extends AppCompatActivity {
     FrameLayout frameLayout;
     private TextView mTextMessage;
 
-    protected  static  String urlPrefix = "http://192.168.1.107:3002/";
-//    protected  static  String urlPrefix = "http://dry-thicket-34134.herokuapp.com/";
+//    protected  static  String urlPrefix = "http://192.168.1.107:3002/";
+    protected  static  String urlPrefix = "http://dry-thicket-34134.herokuapp.com/";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
