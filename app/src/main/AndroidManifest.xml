@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:label="Sellofy"
+        android:label="SelloFy"
         android:icon="@mipmap/sellofy_icon_round"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"

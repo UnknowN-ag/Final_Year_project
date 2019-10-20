@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class home_screen extends AppCompatActivity {
     FrameLayout frameLayout;
@@ -54,6 +55,13 @@ public class home_screen extends AppCompatActivity {
 
         frameLayout = findViewById(R.id.fragment_home_place);
         setFragmentInitially(new  home_recyclerView_frag());
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        Toast.makeText(this,"Exit Successfull", Toast.LENGTH_SHORT).show();
+        super.onBackPressed();
     }
 
     private  void setFragmentInitially(Fragment fragment){
