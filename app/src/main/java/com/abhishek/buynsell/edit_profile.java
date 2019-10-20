@@ -150,6 +150,6 @@ public class edit_profile extends AppCompatActivity {
 
         Intent intent = new Intent(edit_profile.this , home_screen.class);
         startActivity(intent);
-        finish();
+        this.finish();
     }
 }

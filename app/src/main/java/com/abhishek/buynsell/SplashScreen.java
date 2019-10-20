@@ -24,6 +24,8 @@ public class SplashScreen extends AppCompatActivity {
 //    private  String USER_URL = "http://dry-thicket-34134.herokuapp.com/user";
     private String USER_URL = home_screen.urlPrefix+"user";
 
+    Integer responseCode = 0;
+
 
 
 
@@ -33,58 +35,60 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         getSupportActionBar().hide();
 
+        final Context context = SplashScreen.this;
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString("token", "");
+
+        RequestQueue requestQueue = Volley.newRequestQueue(SplashScreen.this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, USER_URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    responseCode = response.getInt("responseCode");
+                    Log.d("responseCode",responseCode.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Intent intent = new Intent(SplashScreen.this, login_screen.class);
+                startActivity(intent);
+                finish();
+            }
+        }){
+            @Override
+            public HashMap<String, String> getHeaders() throws AuthFailureError{
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("token", token);
+                return  headers;
+            }
+        };
+
+        requestQueue.add(jsonObjectRequest);
+
 
 
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                final Context context = SplashScreen.this;
-                SharedPreferences sharedPreferences = context.getSharedPreferences("Authentication",context.MODE_PRIVATE);
-                final String token = sharedPreferences.getString("token", "");
-
-                RequestQueue requestQueue = Volley.newRequestQueue(SplashScreen.this);
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, USER_URL, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Integer responseCode = response.getInt("responseCode");
-                            Log.d("responseCode",responseCode.toString());
-                            if(responseCode == 200){
-                                Intent intent = new Intent(context, home_screen.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                            else if(responseCode == 300){
-                                Intent intent = new Intent(context, registration_afterSignup.class);
-                                startActivity(intent);
-                                finish();
-                            }else  if(responseCode == 100){
-                                Intent intent = new Intent(context, login_screen.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Intent intent = new Intent(SplashScreen.this, login_screen.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }){
-                    @Override
-                    public HashMap<String, String> getHeaders() throws AuthFailureError{
-                        HashMap<String, String> headers = new HashMap<>();
-                        headers.put("token", token);
-                        return  headers;
-                    }
-                };
-
-                requestQueue.add(jsonObjectRequest);
+                if(responseCode == 200){
+                    Intent intent = new Intent(context, home_screen.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(responseCode == 300){
+                    Intent intent = new Intent(context, registration_afterSignup.class);
+                    startActivity(intent);
+                    finish();
+                }else  if(responseCode == 100){
+                    Intent intent = new Intent(context, login_screen.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
 
         },SPLASH_TIME_OUT );
